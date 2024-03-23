@@ -1,0 +1,27 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: webstore.perfume@gmail.com
+    password: lnlzzizbarytqfnz
+    properties:
+      mail.smtp.starttls.enable: true
+      mjaail.smtp.auth: true
+  datasource:
+    username: postgres
+    password: JeISbHpfLuUNIGJKJIobnyMTqiiVVwyf
+    url: jdbc:postgresql://monorail.proxy.rlwy.net:51964/railway
+  data:
+    redis:
+      url: jdbc:redis://viaduct.proxy.rlwy.net:57156/0
+      password: hxxpDTMxhYjdfgbdjDsizaoPLjlLDSag
+      username: default
+eco:
+  security:
+    token:
+      expiration: 86400
+      secret: SzqXrBuEVJOVLqjGeenHM6aNo8j3KJiKJ4LWB3oZf8aSlkkQgw6L6ZwklCbQK2Y/
+  otp:
+    retry-wait-time: 5 # in seconds
+    retry-count: 3
+    time-to-live: 60 # in seconds:
