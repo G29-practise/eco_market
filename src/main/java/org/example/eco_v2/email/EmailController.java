@@ -2,7 +2,8 @@ package org.example.eco_v2.email;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.eco_v2.email.dto.EmailDto;
+import org.example.eco_v2.email.dto.EmailRequestDto;
+import org.example.eco_v2.user.dto.ValidateEmailRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +18,16 @@ public class EmailController {
     private final EmailService emailService;
 
     @PostMapping("/auth/verification")
-    public ResponseEntity<?> getVerification(@RequestBody EmailDto email){
-        String verified = emailService.verifyEmail(email);
+    public ResponseEntity<?> getVerification(@RequestBody ValidateEmailRequestDto validateEmailRequestDto){
+        String verified = emailService.verifyEmail(validateEmailRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(verified);
     }
 
 
-    @GetMapping("/auth/reTry")
-    public ResponseEntity<?> reTryEmailVer(@RequestBody EmailDto emailDto){
-         emailService.retry(emailDto);
-         return ResponseEntity.status(HttpStatus.OK).build();
+    @PostMapping("/auth/reTry")
+    public ResponseEntity<?> reTryEmailVer(@RequestBody EmailRequestDto emailRequestDto){
+        emailService.retry(emailRequestDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 

@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -62,24 +63,15 @@ public class UserService extends GenericService<User, UUID, UserCreateDto, UserR
         int code = random.nextInt(1000, 10000);
         notificationService.sendVerifyCode(user.getEmail(), code);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        EmailDto emailDto = new EmailDto(user.getEmail(), String.valueOf(code),user);
-        redisTemplate.opsForValue().set(user.getEmail(), emailDto, 5, TimeUnit.MINUTES);
+        Otp otp = new Otp(user.getEmail(), code, 1, LocalDateTime.now(), LocalDateTime.now(), user);
+        otpRepository.save(otp);
         return mapper.userResponseDto(user);
+
     }
 
     @Override
     protected UserResponseDto internalUpdate(UUID uuid, UserUpdateDto userUpdateDto) {
         return null;
-    }
-
-    private void isPhoneNumberVerified(String phoneNumber) {
-        Otp otp = otpRepository
-                .findById(phoneNumber)
-                .orElseThrow(() -> new OtpException.PhoneNumberNotVerified(phoneNumber));
-
-        if (!otp.isVerified()) {
-            throw new OtpException.PhoneNumberNotVerified(phoneNumber);
-        }
     }
 
 
