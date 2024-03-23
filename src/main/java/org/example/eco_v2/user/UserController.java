@@ -2,7 +2,6 @@ package org.example.eco_v2.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.eco_v2.common.response.CommonResponse;
 import org.example.eco_v2.security.JwtService;
 import org.example.eco_v2.user.dto.*;
 import org.example.eco_v2.user.otp.OtpService;
@@ -58,13 +57,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-//    @PostMapping("/auth/validate")
-//    public ResponseEntity<CommonResponse> validatePhoneNumber(
-//            @RequestBody @Valid ValidatePhoneNumberRequestDto requestDto
-//    ) {
-//        CommonResponse commonResponse = otpService.sendSms(requestDto);
-//        return ResponseEntity.ok(commonResponse);
-//    }
 
     @PostMapping("/auth/sign-up")
     public ResponseEntity<?> signUp(
@@ -89,9 +81,6 @@ public class UserController {
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
                 .body(userResponseDto);
     }
-
-
-
 
 }
 
