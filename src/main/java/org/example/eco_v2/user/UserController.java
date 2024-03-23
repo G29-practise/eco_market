@@ -23,7 +23,6 @@ public class UserController {
     public static final String BATH_USER = "/user";
 
     private final UserService userService;
-    private final OtpService otpService;
     private final JwtService jwtService;
 
     @PostMapping("/create")
