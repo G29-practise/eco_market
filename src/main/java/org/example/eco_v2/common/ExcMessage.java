@@ -9,8 +9,9 @@ public interface ExcMessage {
     String INCORRECT_EMAIL_VER = "Incorrect email verification";
 
     String INCORRECT_EMAIL = "Incorrect email";
-    String TIME_OUT = "Time out";
-    String INVALID_PASSWORD = "INVALID PASSWORD";
+    String TIME_OUT = "Time out {}";
+    String INVALID_PASSWORD = "INVALID PASSWORD {}";
     String INVALID_PHONE_NUMBER = "INVALID PHONE NUMBER";
     String INVALID_EMAIL = "INVALID EMAIL";
+    String REDIS_ERROR = "REDIS_ERROR {}";
 }

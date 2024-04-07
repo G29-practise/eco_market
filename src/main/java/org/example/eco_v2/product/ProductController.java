@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.UUID;
 
+import static org.example.eco_v2.product.ProductController.BATH_URL;
+
 @RestController
-@RequestMapping(App.BASE_PATH + ProductController.BATH_URL)
+@RequestMapping(BATH_URL)
 @RequiredArgsConstructor
 public class ProductController {
 
