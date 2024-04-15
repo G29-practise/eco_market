@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.eco_v2.cart.dto.CartCreateDto;
 import org.example.eco_v2.cart.dto.CartResponseDto;
 import org.example.eco_v2.cart.dto.CartUpdateDto;
-import org.example.eco_v2.common.App;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.UUID;
 
+import static org.example.eco_v2.cart.CartController.BATH_URL;
+
 @RestController
-@RequestMapping(App.BASE_PATH + CartController.BATH_URL)
+@RequestMapping(BATH_URL)
 @RequiredArgsConstructor
 public class CartController {
     public static final String BATH_URL = "/cart";

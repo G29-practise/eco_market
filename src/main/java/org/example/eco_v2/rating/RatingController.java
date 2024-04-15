@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.UUID;
 
-@RequestMapping(App.BASE_PATH + RatingController.BATH_URL)
+import static org.example.eco_v2.rating.RatingController.BATH_URL;
+
+@RequestMapping(BATH_URL)
 @RestController
 @RequiredArgsConstructor
 public class RatingController {
