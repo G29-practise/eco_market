@@ -21,14 +21,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-//    private final String[] WHITE_LIST = {
-//            "/swagger-ui/**",
-//            "/api/docs/**",
-//            "/user/auth/**",
-//            "/email/auth/**",
-//            "/category/**","/product/**","/order/**","/commit/**",
-//            "/cart/**","/address/**","/productSet/**","/rating/**","/wishlist/**"
-//    };
+    private final String[] WHITE_LIST = {
+            "/swagger-ui/**",
+            "/api/docs/**",
+            "/user/auth/**",
+            "/email/auth/**"
+    };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtAuthorizationFilter authorizationFilter) throws Exception {
@@ -37,12 +35,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         registry -> registry
-                                .requestMatchers("/swagger-ui/**",
-                                        "/api/docs/**",
-                                        "/user/auth/**",
-                                        "/email/auth/**",
-                                        "/category/**","/product/**","/order/**","/commit/**",
-                                        "/cart/**","/address/**","/productSet/**","/rating/**","/wishlist/**")
+                                .requestMatchers(WHITE_LIST)
                                 .permitAll()
                                 .anyRequest().authenticated()
                 )

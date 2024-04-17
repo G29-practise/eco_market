@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.UUID;
 
-import static org.example.eco_v2.order.OrderController.BATH_URL;
-
 @RestController
-@RequestMapping(BATH_URL)
+@RequestMapping(App.BASE_PATH + OrderController.BATH_URL)
 @RequiredArgsConstructor
 public class OrderController {
 
@@ -26,28 +24,28 @@ public class OrderController {
 
     private final OrderService orderService;
 
-   // @PreAuthorize("hasAnyAuthority('order:create')")
+    @PreAuthorize("hasAnyAuthority('order:create')")
     @PostMapping("/create")
     public ResponseEntity<OrderResponseDto> create(@RequestBody OrderCreateDto orderCreateDto) throws IOException {
         OrderResponseDto orderResponseDto = orderService.create(orderCreateDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderResponseDto);
     }
 
-  //  @PreAuthorize("hasAnyAuthority('order:read')")
+    @PreAuthorize("hasAnyAuthority('order:read')")
     @GetMapping("/getById/{id}")
     public ResponseEntity<OrderResponseDto> getId(@PathVariable UUID id){
         OrderResponseDto orderResponseDto = orderService.get(id);
         return ResponseEntity.ok(orderResponseDto);
     }
 
-  //  @PreAuthorize("hasAnyAuthority('order:read')")
+    @PreAuthorize("hasAnyAuthority('order:read')")
     @GetMapping("/getAll")
     public ResponseEntity<Page<OrderResponseDto>> getAll(Pageable pageable, @RequestParam(required = false) String predicate){
         Page<OrderResponseDto> orderResponseDto = orderService.getAll(predicate, pageable);
         return ResponseEntity.ok(orderResponseDto);
     }
 
-  //  @PreAuthorize("hasAnyAuthority('order:update')")
+    @PreAuthorize("hasAnyAuthority('order:update')")
     @PutMapping("/updateById/{id}")
     public ResponseEntity<OrderResponseDto> update(@PathVariable UUID id, @RequestBody OrderUpdateDto updateDTO){
         OrderResponseDto update = orderService.update(id, updateDTO);
@@ -55,7 +53,7 @@ public class OrderController {
     }
 
 
-    //@PreAuthorize("hasAnyAuthority('order:delete')")
+    @PreAuthorize("hasAnyAuthority('order:delete')")
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
         orderService.delete(id);

@@ -2,8 +2,6 @@ package org.example.eco_v2.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.eco_v2.cart.CartController;
-import org.example.eco_v2.cart.dto.CartCreateDto;
 import org.example.eco_v2.security.JwtService;
 import org.example.eco_v2.user.dto.*;
 import org.example.eco_v2.user.otp.OtpService;
@@ -21,7 +19,7 @@ import java.util.UUID;
 @RequestMapping(UserController.BATH_USER)
 @RequiredArgsConstructor
 public class UserController {
-    private final CartController cartController;
+
     public static final String BATH_USER = "/user";
 
     private final UserService userService;
@@ -64,8 +62,6 @@ public class UserController {
             @RequestBody @Valid UserCreateDto userCreateDto
     ) throws IOException {
         UserResponseDto userResponseDto = userService.create(userCreateDto);
-
-
 
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
