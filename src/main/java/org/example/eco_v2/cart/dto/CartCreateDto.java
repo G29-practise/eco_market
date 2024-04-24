@@ -9,5 +9,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartCreateDto{
+
     private UUID userId;
 }
